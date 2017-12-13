@@ -36,5 +36,9 @@ public class UserServices {
 	public UserServices() {		
 		this.userDAO = new UserDAO();
 	}
+
+	public Utilisateur getUserByLogin(String login) {
+		return this.userDAO.getUserByLogin(login);
+	}
 	
 }

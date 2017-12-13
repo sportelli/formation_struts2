@@ -7,7 +7,7 @@
     <title>Hello</title>
   </head>
   <body>
-    List_users.jsp
+    List_users.jsp pour notre cher <s:property value="session.client.prenom"/>
 
 	<table>
 		<thead><tr><th>ID</th><th>Nom</th><th>Prenom</th></tr></thead>
