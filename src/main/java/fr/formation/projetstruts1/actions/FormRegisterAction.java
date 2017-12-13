@@ -3,10 +3,13 @@ package fr.formation.projetstruts1.actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.opensymphony.xwork2.ActionSupport;
+
+import fr.formation.projetstruts1.model.Sexe;
 import fr.formation.projetstruts1.model.Utilisateur;
 import fr.formation.projetstruts1.services.UserServices;
 
-public class FormRegisterAction {
+public class FormRegisterAction extends ActionSupport {
 	
 	private String maVariable = "";
 	private Integer taille = 0;
@@ -14,6 +17,7 @@ public class FormRegisterAction {
 	private UserServices userServices;
 	private Boolean isExist;
 	private List<String> sexes;
+	private List<Sexe> sexesList;
 	
 	public String execute() {
 		if (user != null) {
@@ -43,6 +47,23 @@ public class FormRegisterAction {
 		this.sexes.add("M");
 		this.sexes.add("F");
 		this.sexes.add("Inconnu");
+		
+		//TODO: A récupérer via une couche de services
+		this.sexesList = new ArrayList<>();
+		this.sexesList.add(new Sexe(-1, "Inconnu"));
+		this.sexesList.add(new Sexe(1, "Homme"));
+		this.sexesList.add(new Sexe(2, "Femme"));
+		
+	}
+	
+	public void validate() {
+		if (this.user != null) {
+			if ((this.user.getNom() != null) && (this.user.getNom().length() == 0))
+				addFieldError("user.nom", "Nom obligatoire");
+			if ((this.user.getPrenom() != null) && (this.user.getPrenom().length() == 0))
+				addFieldError("user.prenom", "Prenom obligatoire");		
+			
+		}
 	}
 
 	public String getMaVariable() {
@@ -83,5 +104,13 @@ public class FormRegisterAction {
 
 	public void setSexes(List<String> sexes) {
 		this.sexes = sexes;
+	}
+
+	public List<Sexe> getSexesList() {
+		return sexesList;
+	}
+
+	public void setSexesList(List<Sexe> sexesList) {
+		this.sexesList = sexesList;
 	}
 }

@@ -6,6 +6,7 @@ public class Utilisateur {
 	private String prenom;
 	private String nom;
 	private String password;
+	private String sexe;
 	
 	public Utilisateur() {
 		super();
@@ -48,6 +49,14 @@ public class Utilisateur {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getSexe() {
+		return sexe;
+	}
+
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
 	}
 	
 	

@@ -10,18 +10,22 @@
 <body>
 	Envoi de variable "maVariable" vers testvar.action
 	<form method="post" action="form_register.action">
-		Mavariable: <input type="text" name="maVariable" /> <br /> User.id: <input
-			type="text" name="user.id" /> <br /> User.prenom: <input type="text"
-			name="user.prenom" /> <br /> User.nom: <input type="text"
-			name="user.nom" /> <br /> <input type="submit" />
+		Mavariable: <input type="text" name="maVariable" /> <br /> User.id:
+		<input type="text" name="user.id" /> <br /> User.prenom: <input
+			type="text" name="user.prenom" /> <br /> User.nom: <input
+			type="text" name="user.nom" /> <br /> <input type="submit" />
 	</form>
 	<s:form method="post" action="form_register">
 		<s:textfield name="maVariable" label="Ma variable" />
 		<s:textfield name="user.id" label="User.id" />
 		<s:textfield name="user.prenom" label="User.prenom" />
 		<s:textfield name="user.nom" label="User.nom" />
-		<s:select name="sexe" list="sexes" label="Sexe" style="width: 100%;"/>
-		<s:radio name="sexeRadio" list="sexes" label="Sexe Radio"/>		
+		<s:select name="sexe" list="sexes" label="Sexe" style="width: 100%;"
+			headerKey="Inconnu" headerValue="-- SEXE --" />
+		<s:select name="sexe2" list="sexesList" label="Sexe L" style="width: 100%;"
+			listKey="id" listValue="name"
+			headerKey="Inconnu" headerValue="-- SEXE --" />
+		<s:radio name="sexeRadio" list="sexes" label="Sexe Radio" />
 		<s:submit />
 	</s:form>
 </body>
