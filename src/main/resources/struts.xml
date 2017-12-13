@@ -56,6 +56,11 @@
 			<result name="success" type="redirect">listusers.html</result>		
 		</action>
 		
+		<action name="testsession" class="fr.formation.projetstruts1.actions.TestSessionAction"
+				method="execute">
+			<result name="success">/compteur.jsp</result>		
+		</action>
+		
 	</package>
 
 </struts>
