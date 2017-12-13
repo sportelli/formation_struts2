@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	Nb visites: <s:property value="session.nbVisites"/>
+	<br />
 	Envoi de variable "maVariable" vers testvar.action
 	<form method="post" action="form_register.action">
 		Mavariable: <input type="text" name="maVariable" /> <br /> User.id:

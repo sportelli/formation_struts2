@@ -2,6 +2,9 @@ package fr.formation.projetstruts1.actions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -9,7 +12,9 @@ import fr.formation.projetstruts1.model.Sexe;
 import fr.formation.projetstruts1.model.Utilisateur;
 import fr.formation.projetstruts1.services.UserServices;
 
-public class FormRegisterAction extends ActionSupport {
+public class FormRegisterAction 
+	extends ActionSupport 
+	implements SessionAware{
 	
 	private String maVariable = "";
 	private Integer taille = 0;
@@ -18,6 +23,7 @@ public class FormRegisterAction extends ActionSupport {
 	private Boolean isExist;
 	private List<String> sexes;
 	private List<Sexe> sexesList;
+	private Map<String, Object> session;
 	
 	public String execute() {
 		if (user != null) {
@@ -113,4 +119,13 @@ public class FormRegisterAction extends ActionSupport {
 	public void setSexesList(List<Sexe> sexesList) {
 		this.sexesList = sexesList;
 	}
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
 }

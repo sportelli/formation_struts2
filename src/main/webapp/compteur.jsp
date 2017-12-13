@@ -11,5 +11,6 @@
 
 <body>
 	Nbvisites: <s:property value="nbVisites"/>
+	Aller vers <a href=<s:url action="form_register"/>>le form register</a>
 </body>
 </html>
