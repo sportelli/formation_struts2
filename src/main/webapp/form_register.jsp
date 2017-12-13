@@ -20,6 +20,8 @@
 		<s:textfield name="user.id" label="User.id" />
 		<s:textfield name="user.prenom" label="User.prenom" />
 		<s:textfield name="user.nom" label="User.nom" />
+		<s:select name="sexe" list="sexes" label="Sexe" style="width: 100%;"/>
+		<s:radio name="sexeRadio" list="sexes" label="Sexe Radio"/>		
 		<s:submit />
 	</s:form>
 </body>

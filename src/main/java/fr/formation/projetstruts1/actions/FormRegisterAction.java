@@ -1,5 +1,8 @@
 package fr.formation.projetstruts1.actions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.formation.projetstruts1.model.Utilisateur;
 import fr.formation.projetstruts1.services.UserServices;
 
@@ -10,6 +13,7 @@ public class FormRegisterAction {
 	private Utilisateur user;
 	private UserServices userServices;
 	private Boolean isExist;
+	private List<String> sexes;
 	
 	public String execute() {
 		if (user != null) {
@@ -35,6 +39,10 @@ public class FormRegisterAction {
 	public FormRegisterAction() {
 		super();
 		this.userServices = new UserServices();
+		this.sexes = new ArrayList<String>();
+		this.sexes.add("M");
+		this.sexes.add("F");
+		this.sexes.add("Inconnu");
 	}
 
 	public String getMaVariable() {
@@ -67,5 +75,13 @@ public class FormRegisterAction {
 
 	public void setIsExist(Boolean isExist) {
 		this.isExist = isExist;
+	}
+
+	public List<String> getSexes() {
+		return sexes;
+	}
+
+	public void setSexes(List<String> sexes) {
+		this.sexes = sexes;
 	}
 }
