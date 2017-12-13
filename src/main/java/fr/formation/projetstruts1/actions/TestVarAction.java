@@ -6,6 +6,7 @@ public class TestVarAction {
 	private Integer monEntier = 0;
 
 	public String execute() {
+		if (true) return "goodbye"; // Test pour global-results
 		System.out.println("TestVarAction OK");
 		System.out.println("maVariable=" + maVariable);
 		System.out.println("monEntier=" + monEntier);
