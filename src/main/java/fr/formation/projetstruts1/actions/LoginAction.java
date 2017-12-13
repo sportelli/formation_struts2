@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.formation.projetstruts1.exceptions.UserUnknownException;
 import fr.formation.projetstruts1.model.Utilisateur;
 import fr.formation.projetstruts1.services.UserServices;
 
@@ -16,7 +17,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private UserServices userServices;
 	private Map<String, Object> session;
 
-	public String execute() {
+	public String execute() throws UserUnknownException{
 		if (this.session == null)
 			this.session = new HashMap<String, Object>();
 		
@@ -28,8 +29,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			}
 			else {
 				//addFieldError("login", "Login inconnu");
-				addActionError("Login inconnu");
-				return "error";			
+				//addActionError("Login inconnu");
+				//return "error";
+				throw new UserUnknownException("Utilisateur inconnu");
 			}
 		}
 		else {

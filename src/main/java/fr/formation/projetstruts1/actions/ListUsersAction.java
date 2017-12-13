@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import fr.formation.projetstruts1.exceptions.UserUnknownException;
 import fr.formation.projetstruts1.model.Utilisateur;
 import fr.formation.projetstruts1.services.UserServices;
 
@@ -13,7 +14,11 @@ public class ListUsersAction implements SessionAware {
 	private UserServices userServices;
 	private Map<String, Object> session;
 	
-	public String execute() {
+	public String execute() throws UserUnknownException {
+		
+		if (this.session.get("client") == null)
+			throw new UserUnknownException("utilisateur inconnu");
+
 		this.utilisateurs = this.userServices.findAllUsers();
 		for (Utilisateur utilisateur : this.utilisateurs) {
 			System.out.println(utilisateur);
