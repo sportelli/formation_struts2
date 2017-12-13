@@ -12,6 +12,7 @@
 		<global-results>
 			<result name="goodbye">/goodbye.jsp</result>	
 			<result name="user_unknown" type="chain">user_unknown</result>		
+			<result name="internal_error" type="chain">error</result>		
 		</global-results>
 		
 		<global-exception-mappings>
@@ -20,9 +21,8 @@
 				exception="fr.formation.projetstruts1.exceptions.UserUnknownException"/>
 		</global-exception-mappings>
 		
-		<action name="internal_error">
-			<result>/internal_error.jsp</result>
-		</action>
+		
+		
 		
 		<action name="index">
 			<result>/index.jsp</result>
@@ -77,6 +77,17 @@
 		<action name="user_unknown">
 			<result>/error_login.jsp</result>
 		</action>
+
+		<action name="error">
+			<result>/internal_error.jsp</result>
+		</action>
+
+		<action name="myerror"
+				class="fr.formation.projetstruts1.actions.ErrorAction">
+			<result>/hello.jsp</result>
+		</action>
+
+
 		
 	</package>
 
