@@ -1,19 +1,23 @@
 package fr.formation.projetstruts1.actions;
 
+import com.opensymphony.xwork2.ActionSupport;
+
 import fr.formation.projetstruts1.services.UserServices;
 
-public class LoginAction {
+public class LoginAction extends ActionSupport {
 	private String login;
 	private String password;
 	private UserServices userServices;
 
 	public String execute() {
-		if (( (login != null) && (this.password != null))){
+		if (( (this.login != null) && (this.password != null))){
 			Boolean isExist = userServices.checkUsernameExist(this.login, this.password);
 			if (isExist) {
 				return "success";
 			}
 			else {
+				//addFieldError("login", "Login inconnu");
+				addActionError("Login inconnu");
 				return "error";			
 			}
 		}
@@ -22,6 +26,20 @@ public class LoginAction {
 		}
 	}
 
+	// Règles de validation de mon formulaire : 
+	// - Champs login > 3 caractères et contient un @
+	// - Champs password > 3 caractères
+	public void validate() {
+//		System.out.println("login=" + this.login);
+//		System.out.println("password=" + this.password);
+		if ((this.login != null) && (this.login.length() < 3))
+			addFieldError("login", "Le login est obligatoire");
+		else if ( (this.login != null) && (!this.login.contains("@")) )
+			addFieldError("login", "Le login doit contenir un @");
+		
+		if ((this.password != null) && (this.password.length() < 3)) 
+			addFieldError("password", "Le mot de passe est obligatoire");
+	}	
 	public LoginAction() {
 		super();
 		this.userServices = new UserServices();

@@ -27,7 +27,7 @@ public class UserServices {
 	
 	public Boolean checkUsernameExist(String login, String password) {
 		Utilisateur user = this.userDAO.getUserByLogin(login);
-		if ( (user != null) && (password.equals(user.getPassword())) )
+		if ( (user != null) && (password != null) && (password.equals(user.getPassword())) )
 			return true;
 		else 
 			return false;

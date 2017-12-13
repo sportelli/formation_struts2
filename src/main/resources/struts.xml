@@ -6,7 +6,8 @@
 <struts>
 
 	<constant name="struts.devMode" value="true"></constant>
-
+	<constant name="struts.action.extension" value="html"></constant>
+	
 	<package name="formation" extends="struts-default">
 		
 		<action name="index">
@@ -45,8 +46,9 @@
 				class="fr.formation.projetstruts1.actions.LoginAction"
 				method="execute">
 			<result name="error">/login.jsp</result>		
+			<result name="input">/login.jsp</result>		
 <!-- 			<result name="success" type="chain">listusers</result> -->		
-			<result name="success" type="redirect">listusers</result>		
+			<result name="success" type="redirect">listusers.html</result>		
 		</action>
 		
 	</package>
