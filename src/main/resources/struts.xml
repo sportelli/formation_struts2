@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="formation" extends="struts-default">
+		
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		
+		<action name="hello" 
+				class="fr.formation.projetstruts1.actions.HelloAction" 
+				method="execute">
+			<result name="success">/hello.jsp</result>
+			<result name="goodbye">/goodbye.jsp</result>
+		</action>
+		
+		<action name="testvar"
+				class="fr.formation.projetstruts1.actions.TestVarAction"
+				method="execute">
+			<result name="success">/hello.jsp</result>		
+			<result name="error">/goodbye.jsp</result>		
+		</action>
+		
+		<action name="form_register" 
+				class="fr.formation.projetstruts1.actions.FormRegisterAction"
+				method="execute">
+			<result name="input">/form_register.jsp</result>
+			<result name="success">/testvar.jsp</result>
+		</action>
+		
+		<action name="listusers"
+				class="fr.formation.projetstruts1.actions.ListUsersAction"
+				method="execute">
+			<result name="error">/error.jsp</result>
+			<result name="success">/list_users.jsp</result>				
+		</action>
+		
+		<action name="login"
+				class="fr.formation.projetstruts1.actions.LoginAction"
+				method="execute">
+			<result name="error">/login.jsp</result>		
+<!-- 			<result name="success" type="chain">listusers</result> -->		
+			<result name="success" type="redirect">listusers</result>		
+		</action>
+		
+	</package>
+
+</struts>
