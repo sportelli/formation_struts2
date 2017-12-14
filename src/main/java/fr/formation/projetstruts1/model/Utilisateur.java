@@ -1,7 +1,10 @@
 package fr.formation.projetstruts1.model;
 
-public class Utilisateur {
+import java.io.Serializable;
 
+public class Utilisateur implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String prenom;
 	private String nom;

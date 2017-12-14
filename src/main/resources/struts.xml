@@ -122,6 +122,13 @@
 			<interceptor-ref name="json"/>
 		</action>
 
+		<action name="jsonlistusers"
+			class="fr.formation.projetstruts1.actions.JSONListUserAction"
+			method="execute">
+			<result type="json"></result>		
+			<interceptor-ref name="json"/>
+		</action>
+
 	</package>
 
 </struts>
