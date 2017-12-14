@@ -16,7 +16,7 @@
 		var settings = {
 				  "async": true,
 				  "crossDomain": true,
-				  "url": "http://localhost:8080/c/jsonuser.html",
+				  "url": "jsonuser.html",
 				  "method": "POST",
 				  "headers": {
 				    "Content-Type": "application/json",
