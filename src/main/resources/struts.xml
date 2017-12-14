@@ -8,8 +8,12 @@
 	<constant name="struts.devMode" value="true"></constant>
 	<constant name="struts.action.extension" value="html"></constant>
 
-	<package name="formation" extends="struts-default">
+<!-- 	<package name="formation" extends="struts-default"> -->
+	<package name="formation" extends="json-default">
 		<interceptors>
+		
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+		
 			<interceptor name="calculateTimeInterceptor"
 				class="fr.formation.projetstruts1.interceptors.CalculateTimeInterceptor" />
 
@@ -103,7 +107,20 @@
 			<result>/hello.jsp</result>
 		</action>
 
-
+		<action name="jsonget"
+			class="fr.formation.projetstruts1.actions.JSONAction"
+			method="execute">
+			<result type="json"></result>		
+			<interceptor-ref name="defaultStack"/> <!-- Pour ne pas appeler LoginInterceptor -->
+			<interceptor-ref name="json"/>
+		</action>
+		
+		<action name="jsonuser"
+			class="fr.formation.projetstruts1.actions.JSONUserAction"
+			method="execute">
+			<result type="json"></result>		
+			<interceptor-ref name="json"/>
+		</action>
 
 	</package>
 

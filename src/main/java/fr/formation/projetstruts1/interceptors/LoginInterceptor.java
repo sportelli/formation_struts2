@@ -2,10 +2,10 @@ package fr.formation.projetstruts1.interceptors;
 
 import java.util.Map;
 
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
-
-import fr.formation.projetstruts1.exceptions.UserUnknownException;
 
 public class LoginInterceptor implements Interceptor{
 
@@ -26,6 +26,8 @@ public class LoginInterceptor implements Interceptor{
 		
 		// Récupération de la session HTTP
 		Map<String, Object> session = invocation.getInvocationContext().getSession();
+
+		// invocation.getClass(), invocation.getAction(), ...
 		
 		if ( (session == null) || (session.get("client") == null))
 			return "login";
