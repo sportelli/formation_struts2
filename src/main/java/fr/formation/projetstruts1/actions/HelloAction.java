@@ -12,8 +12,8 @@ public class HelloAction implements SessionAware {
 	
 	public String execute() throws UserUnknownException {
 		
-		if (this.session.get("client") == null)
-			throw new UserUnknownException("utilisateur inconnu");
+//		if (this.session.get("client") == null)
+//			throw new UserUnknownException("utilisateur inconnu");
 		
 		return "goodbye";
 //		return "success";

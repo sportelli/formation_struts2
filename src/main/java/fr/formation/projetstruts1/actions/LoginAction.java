@@ -18,6 +18,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 
 	public String execute() throws UserUnknownException{
+		System.out.println("METHODE EXECUTE LOGINACTION");
 		if (this.session == null)
 			this.session = new HashMap<String, Object>();
 		

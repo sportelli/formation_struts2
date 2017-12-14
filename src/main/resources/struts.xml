@@ -7,73 +7,90 @@
 
 	<constant name="struts.devMode" value="true"></constant>
 	<constant name="struts.action.extension" value="html"></constant>
-	
+
 	<package name="formation" extends="struts-default">
+		<interceptors>
+			<interceptor name="calculateTimeInterceptor"
+				class="fr.formation.projetstruts1.interceptors.CalculateTimeInterceptor" />
+
+			<interceptor name="loginInterceptor"
+				class="fr.formation.projetstruts1.interceptors.LoginInterceptor"/>
+
+			<interceptor name="testInterceptor"
+				class="fr.formation.projetstruts1.interceptors.TestInterceptor" />
+
+			<interceptor-stack name="formationInterceptorStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="testInterceptor" />
+				<interceptor-ref name="calculateTimeInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+			
+		</interceptors>
+		
+		<default-interceptor-ref name="formationInterceptorStack"/>
+
 		<global-results>
-			<result name="goodbye">/goodbye.jsp</result>	
-			<result name="user_unknown" type="chain">user_unknown</result>		
-			<result name="internal_error" type="chain">error</result>		
+			<result name="goodbye">/goodbye.jsp</result>
+			<result name="user_unknown" type="chain">user_unknown</result>
+			<result name="internal_error" type="chain">error</result>
+			<result name="login" type="redirect">login.html</result>
 		</global-results>
-		
+
 		<global-exception-mappings>
-			<exception-mapping result="internal_error" exception="java.lang.Exception"/>
-			<exception-mapping result="user_unknown" 
-				exception="fr.formation.projetstruts1.exceptions.UserUnknownException"/>
+			<exception-mapping result="internal_error"
+				exception="java.lang.Exception" />
+			<exception-mapping result="user_unknown"
+				exception="fr.formation.projetstruts1.exceptions.UserUnknownException" />
 		</global-exception-mappings>
-		
-		
-		
-		
+
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-		
-		<action name="hello" 
-				class="fr.formation.projetstruts1.actions.HelloAction" 
-				method="execute">
+
+		<action name="hello" class="fr.formation.projetstruts1.actions.HelloAction"
+			method="execute">
 			<result name="success">/hello.jsp</result>
 			<!-- global-results --><!-- <result name="goodbye">/goodbye.jsp</result> -->
 		</action>
-		
-		<action name="testvar"
-				class="fr.formation.projetstruts1.actions.TestVarAction"
-				method="execute">
-			<result name="success">/hello.jsp</result>		
-			<result name="error">/goodbye.jsp</result>		
-			<!-- global-results --><!-- <result name="goodbye">/goodbye.jsp</result> -->		
+
+		<action name="testvar" class="fr.formation.projetstruts1.actions.TestVarAction"
+			method="execute">
+			<result name="success">/hello.jsp</result>
+			<result name="error">/goodbye.jsp</result>
+			<!-- global-results --><!-- <result name="goodbye">/goodbye.jsp</result> -->
 		</action>
-		
-		<action name="form_register" 
-				class="fr.formation.projetstruts1.actions.FormRegisterAction"
-				method="execute">
+
+		<action name="form_register"
+			class="fr.formation.projetstruts1.actions.FormRegisterAction" method="execute">
 			<result name="input">/form_register.jsp</result>
 			<result name="success">/testvar.jsp</result>
 		</action>
-		
+
 		<action name="listusers"
-				class="fr.formation.projetstruts1.actions.ListUsersAction"
-				method="execute">
+			class="fr.formation.projetstruts1.actions.ListUsersAction" method="execute">
 			<result name="error">/error.jsp</result>
-			<result name="success">/list_users.jsp</result>		
-			<!-- <exception-mapping 
-				result="user_unknown" 
-				exception="fr.formation.projetstruts1.exceptions.UserUnknownException"/> -->		
+			<result name="success">/list_users.jsp</result>
+			<!-- <exception-mapping result="user_unknown" exception="fr.formation.projetstruts1.exceptions.UserUnknownException"/> -->
 		</action>
-		
-		<action name="login"
-				class="fr.formation.projetstruts1.actions.LoginAction"
-				method="execute">
-			<result name="error">/login.jsp</result>		
-			<result name="input">/login.jsp</result>		
-<!-- 			<result name="success" type="chain">listusers</result> -->		
+
+		<action name="login" class="fr.formation.projetstruts1.actions.LoginAction"
+			method="execute">
+			<result name="error">/login.jsp</result>
+			<result name="input">/login.jsp</result>
+			<!-- <result name="success" type="chain">listusers</result> -->
 			<result name="success" type="redirect">listusers.html</result>
+			<!-- <interceptor-ref name="calculateTimeInterceptor"/> -->
+			<!-- <interceptor-ref name="testInterceptor"/> -->
+			<!-- <interceptor-ref name="formationInterceptorStack"/> -->
+			<interceptor-ref name="defaultStack"/> <!-- Pour ne pas appeler LoginInterceptor -->
 		</action>
-		
-		<action name="testsession" class="fr.formation.projetstruts1.actions.TestSessionAction"
-				method="execute">
-			<result name="success">/compteur.jsp</result>		
+
+		<action name="testsession"
+			class="fr.formation.projetstruts1.actions.TestSessionAction" method="execute">
+			<result name="success">/compteur.jsp</result>
 		</action>
-		
+
 		<action name="user_unknown">
 			<result>/error_login.jsp</result>
 		</action>
@@ -82,13 +99,12 @@
 			<result>/internal_error.jsp</result>
 		</action>
 
-		<action name="myerror"
-				class="fr.formation.projetstruts1.actions.ErrorAction">
+		<action name="myerror" class="fr.formation.projetstruts1.actions.ErrorAction">
 			<result>/hello.jsp</result>
 		</action>
 
 
-		
+
 	</package>
 
 </struts>
